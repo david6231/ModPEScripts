@@ -2,6 +2,7 @@
 
 var FollowingEntity;
 var Rotation;
+var active = 0;
 
 function getRealPitch()
 {
@@ -30,9 +31,10 @@ function getRealPitch()
 
 function attackHook(attacker, victim)
 {
-  if(getCarriedItem() == 296)
+	if(getCarriedItem() == 296)
 	{
 		FollowingEntity = victim;
+		active = 1;
 		preventDefault();
 	}
 }
@@ -40,5 +42,5 @@ function attackHook(attacker, victim)
 function modTick()
 {
 	Rotation = getRealPitch() - 180;
-	setRot(FollowingEntity,Rotation,0);
+	if(active == 1) {setRot(FollowingEntity,Rotation,0);}
 }
