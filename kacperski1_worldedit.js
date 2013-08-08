@@ -10,7 +10,7 @@ var z2 = 0;
 
 function wMessage(msg)
 {
-  clientMessage("[WorldEdit] "+msg);
+	clientMessage("[WorldEdit] "+msg);
 }
 
 function procCmd(cmd)
@@ -18,6 +18,10 @@ function procCmd(cmd)
 	var Command = cmd.split(" ");
 	switch(Command[0])
 	{
+		case "help":
+			clientMessage("Available commands: /help, /wand, /set");
+			break;
+		
 		case "/wand":
 			addItemInventory(271,1); // Wooden Axe
 			addItemInventory(290,1); // Wooden Hoe
