@@ -64,7 +64,7 @@ function useItem(x,y,z,itemId,blockId)
 		x1 = x;
 		y1 = y;
 		z1 = z;
-		wMessage("Position #1 set at"+x1+", "+y1", "+z1+".");
+		wMessage("Position #1 set.");
 		preventDefault();
 	}
 	
@@ -73,7 +73,7 @@ function useItem(x,y,z,itemId,blockId)
 		x2 = x;
 		y2 = y;
 		z2 = z;
-		wMessage("Position #2 set at"+x2+", "+y2", "+z2+".");
+		wMessage("Position #2 set.");
 		preventDefault();
 	}
 }
