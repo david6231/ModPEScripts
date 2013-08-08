@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.2
+// version 0.3
 
 var x1 = 0;
 var y1 = 0;
@@ -20,7 +20,7 @@ function procCmd(cmd)
 	switch(Command[0])
 	{
 		case "help":
-			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, /snow, /thaw");
+			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, /snow, /thaw, //hcuboid");
 			break;
 		
 		case "/wand":
@@ -30,9 +30,9 @@ function procCmd(cmd)
 			break;
 			
 		case "/set":
-			if(Command[1] == 0) {wMessage("Not enough parameters!");}
-			else
-			{
+			//if(Command[1] == 0) {wMessage("Not enough parameters!");}
+			//else
+			//{
 				var lowestX = Math.min(x1, x2);
 				var lowestY = Math.min(y1, y2);
 				var lowestZ = Math.min(z1, z2);
@@ -53,13 +53,13 @@ function procCmd(cmd)
 					}
 				}
 				wMessage("Successfully changed "+BlockNum+" blocks!");
-			}
+			//}
 			break;
 			
 		case "/replace":
-			if(Command[1] == 0 || Command[2] == 0) {wMessage("Not enough parameters!");}
-			else
-			{
+			//if(Command[1] == 0 || Command[2] == 0) {wMessage("Not enough parameters!");}
+			//else
+			//{
 				var lowestX = Math.min(x1, x2);
 				var lowestY = Math.min(y1, y2);
 				var lowestZ = Math.min(z1, z2);
@@ -83,7 +83,7 @@ function procCmd(cmd)
 					}
 				}
 				wMessage("Successfully changed "+BlockNum+" blocks!");
-			}
+			//}
 			break;
 			
 		case "/drain":
@@ -127,7 +127,7 @@ function procCmd(cmd)
 				{
 					for(var z = lowestZ; z <= highestZ; z++)
 					{
-						if(getTile(x,y,z) == 2 && getTile(x,y+1,z) == 0)
+						if(getTile(x,y,z) != 0 && getTile(x,y,z) != 6 && getTile(x,y,z) != 8 && getTile(x,y,z) != 9 && getTile(x,y,z) != 10 && getTile(x,y,z) != 11 && getTile(x,y,z) != 30 && getTile(x,y,z) != 31 && getTile(x,y,z) != 32 && getTile(x,y,z) != 37 && getTile(x,y,z) != 38 && getTile(x,y,z) != 39 && getTile(x,y,z) != 40 && getTile(x,y,z) != 50 && getTile(x,y,z) != 51 && getTile(x,y,z) != 78 && getTile(x,y+1,z) == 0)
 						{
 							setTile(x,y+1,z,78);
 							BlockNum++;
@@ -162,6 +162,35 @@ function procCmd(cmd)
 				}
 			}
 			wMessage("Successfully thawed "+BlockNum+" blocks!");
+			break;
+			
+		case "/hcuboid":
+			var lowestX = Math.min(x1, x2);
+			var lowestY = Math.min(y1, y2);
+			var lowestZ = Math.min(z1, z2);
+			var highestX = Math.max(x1, x2);
+			var highestY = Math.max(y1, y2);
+			var highestZ = Math.max(z1, z2);
+			var BlockNum = 0;
+			
+			for(var x = lowestX; x <= highestX; x++)
+			{
+				for(var y = lowestY; y <= highestY; y++)
+				{
+					setTile(x,y,lowestZ,parseInt(Command[1]));
+					setTile(x,y,highestZ,parseInt(Command[1]));
+					BlockNum += 2;
+					for(var z = lowestZ; z <= highestZ; z++)
+					{
+						setTile(x,lowestY,z,parseInt(Command[1]));
+						setTile(x,highestY,z,parseInt(Command[1]));
+						setTile(lowestX,y,z,parseInt(Command[1]));
+						setTile(highestX,y,z,parseInt(Command[1]));
+						BlockNum += 4;
+					}
+				}
+			}
+			wMessage("Successfully created "+BlockNum+" blocks!");
 			break;
 			
 			
