@@ -19,7 +19,7 @@ function procCmd(cmd)
 	switch(Command[0])
 	{
 		case "help":
-			clientMessage("Available commands: /help, /wand, /set");
+			clientMessage("Available commands: /help, /wand, /set, /replace");
 			break;
 		
 		case "/wand":
@@ -48,6 +48,36 @@ function procCmd(cmd)
 						{
 							setTile(x,y,z,parseInt(Command[1]));
 							BlockNum++;
+						}
+					}
+				}
+				wMessage("Successfully changed "+BlockNum+" blocks!");
+			}
+			break;
+			
+		case "/replace":
+			if(Command[1] == 0 || Command[2] == 0) {wMessage("Not enough parameters!");}
+			else
+			{
+				var lowestX = Math.min(x1, x2);
+				var lowestY = Math.min(y1, y2);
+				var lowestZ = Math.min(z1, z2);
+				var highestX = Math.max(x1, x2);
+				var highestY = Math.max(y1, y2);
+				var highestZ = Math.max(z1, z2);
+				var BlockNum = 0;
+
+				for(var x = lowestX; x <= highestX; x++)
+				{
+					for(var y = lowestY; y <= highestY; y++)
+					{
+						for(var z = lowestZ; z <= highestZ; z++)
+						{
+							if(getTile(x,y,z) == Command[1])
+							{
+								setTile(x,y,z,parseInt(Command[2]));
+								BlockNum++;
+							}
 						}
 					}
 				}
