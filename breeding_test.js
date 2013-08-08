@@ -43,4 +43,5 @@ function modTick()
 {
 	Rotation = getRealPitch() - 180;
 	if(active == 1) {setRot(FollowingEntity,Rotation,0);}
+	clientMessage(Rotation);
 }
