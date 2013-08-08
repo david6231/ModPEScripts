@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.1
+// version 0.2
 
 var x1 = 0;
 var y1 = 0;
@@ -7,6 +7,7 @@ var z1 = 0;
 var x2 = 0;
 var y2 = 0;
 var z2 = 0;
+var topaste;
 
 function wMessage(msg)
 {
@@ -19,7 +20,7 @@ function procCmd(cmd)
 	switch(Command[0])
 	{
 		case "help":
-			clientMessage("Available commands: /help, /wand, /set, /replace");
+			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, /snow, /thaw");
 			break;
 		
 		case "/wand":
@@ -84,6 +85,86 @@ function procCmd(cmd)
 				wMessage("Successfully changed "+BlockNum+" blocks!");
 			}
 			break;
+			
+		case "/drain":
+			var lowestX = Math.min(x1, x2);
+			var lowestY = Math.min(y1, y2);
+			var lowestZ = Math.min(z1, z2);
+			var highestX = Math.max(x1, x2);
+			var highestY = Math.max(y1, y2);
+			var highestZ = Math.max(z1, z2);
+			var BlockNum = 0;
+				
+			for(var x = lowestX; x <= highestX; x++)
+			{
+				for(var y = lowestY; y <= highestY; y++)
+				{
+					for(var z = lowestZ; z <= highestZ; z++)
+					{
+						if(getTile(x,y,z) == 8 || getTile(x,y,z) == 9 || getTile(x,y,z) == 10 || getTile(x,y,z) == 11)
+						{
+							setTile(x,y,z,0);
+							BlockNum++;
+						}
+					}
+				}
+			}
+			wMessage("Successfully drained "+BlockNum+" blocks!");
+			break;
+			
+		case "snow":
+			var lowestX = Math.min(x1, x2);
+			var lowestY = Math.min(y1, y2);
+			var lowestZ = Math.min(z1, z2);
+			var highestX = Math.max(x1, x2);
+			var highestY = Math.max(y1, y2);
+			var highestZ = Math.max(z1, z2);
+			var BlockNum = 0;
+				
+			for(var x = lowestX; x <= highestX; x++)
+			{
+				for(var y = lowestY; y <= highestY; y++)
+				{
+					for(var z = lowestZ; z <= highestZ; z++)
+					{
+						if(getTile(x,y,z) == 2 && getTile(x,y+1,z) == 0)
+						{
+							setTile(x,y+1,z,78);
+							BlockNum++;
+						}
+					}
+				}
+			}
+			wMessage("Successfully snowed "+BlockNum+" blocks!");
+			break;
+			
+		case "thaw":
+			var lowestX = Math.min(x1, x2);
+			var lowestY = Math.min(y1, y2);
+			var lowestZ = Math.min(z1, z2);
+			var highestX = Math.max(x1, x2);
+			var highestY = Math.max(y1, y2);
+			var highestZ = Math.max(z1, z2);
+			var BlockNum = 0;
+				
+			for(var x = lowestX; x <= highestX; x++)
+			{
+				for(var y = lowestY; y <= highestY; y++)
+				{
+					for(var z = lowestZ; z <= highestZ; z++)
+					{
+						if(getTile(x,y,z) == 78)
+						{
+							setTile(x,y,z,0);
+							BlockNum++;
+						}
+					}
+				}
+			}
+			wMessage("Successfully thawed "+BlockNum+" blocks!");
+			break;
+			
+			
 	}
 }
 
