@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.4
+// version 0.4b
 
 var x1 = 0;
 var y1 = 0;
@@ -20,7 +20,7 @@ function procCmd(cmd)
 	switch(Command[0])
 	{
 		case "help":
-			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, /snow, /thaw, //hcuboid, //cut, //copy, //paste, /netherize, /unnetherize, /reactor, /untree");
+			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, /snow, /thaw, //hcuboid, //cut, //copy, //paste, /netherize, /unnetherize, /reactor, /untree, /selectall");
 			break;
 		
 		case "/wand":
@@ -298,6 +298,7 @@ function procCmd(cmd)
 							case 60: setTile(x,y,z,87);break;
 							case 59: setTile(x,y,z,51);break;
 							case 109: setTile(x,y,z,114);break;
+							case 78: setTile(x,y,z,0);break;
 						}
 					}
 				}
@@ -345,26 +346,26 @@ function procCmd(cmd)
 			break;
 			
 		case "reactor":
-			setTile(x,y+1,z,4);
-			setTile(x-1,y+1,z,4);
-			setTile(x+1,y+1,z,4);
-			setTile(x,y+1,z-1,4);
-			setTile(x,y+1,z+1,4);
-			setTile(x-1,y+1,z-1,41);
-			setTile(x-1,y+1,z+1,41);
-			setTile(x+1,y+1,z-1,41);
-			setTile(x+1,y+1,z+1,41);
-			setTile(x,y+2,z,247);
-			setTile(x-1,y+2,z-1,4);
-			setTile(x-1,y+2,z+1,4);
-			setTile(x+1,y+2,z-1,4);
-			setTile(x+1,y+2,z+1,4);
-			setTile(x,y+3,z,4);
-			setTile(x-1,y+3,z,4);
-			setTile(x+1,y+3,z,4);
-			setTile(x,y+3,z-1,4);
-			setTile(x,y+3,z+1,4);
-			wMessage("Nether Reactor created successfully!");
+			setTile(x1,y1+1,z1,4);
+			setTile(x1-1,y1+1,z1,4);
+			setTile(x1+1,y1+1,z1,4);
+			setTile(x1,y1+1,z1-1,4);
+			setTile(x1,y1+1,z1+1,4);
+			setTile(x1-1,y1+1,z1-1,41);
+			setTile(x1-1,y1+1,z1+1,41);
+			setTile(x1+1,y1+1,z1-1,41);
+			setTile(x1+1,y1+1,z1+1,41);
+			setTile(x1,y1+2,z1,247);
+			setTile(x1-1,y1+2,z1-1,4);
+			setTile(x1-1,y1+2,z1+1,4);
+			setTile(x1+1,y1+2,z1-1,4);
+			setTile(x1+1,y1+2,z1+1,4);
+			setTile(x1,y1+3,z1,4);
+			setTile(x1-1,y1+3,z1,4);
+			setTile(x1+1,y1+3,z1,4);
+			setTile(x1,y1+3,z1-1,4);
+			setTile(x1,y1+3,z1+1,4);
+			wMessage("Nether Reactor created successfully1!");
 			break;
 			
 		case "untree":
@@ -389,6 +390,16 @@ function procCmd(cmd)
 				}
 			}
 			wMessage("Successfully... untreed? :P");
+			break;
+			
+		case "/selectall": //selectall taken from Arjay07's WorldEdit+SPC mod ;)
+			x1 = 0
+			y1 = 0
+			z1 = 0
+			x2 = 256
+			y2 = 128
+			z2 = 256
+			wMessage("Whole world selected!");
 			break;
 			
 	}
