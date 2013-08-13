@@ -1,5 +1,5 @@
 // Snow Golem mod by kacperski1
-// version 0.1c
+// version 0.1d
 
 var gX;
 var gY;
@@ -154,10 +154,10 @@ function modTick()
 	
 		if(getTile(gX,gY-1,gZ) == 0)
 		{
-			setTile(gX,gY+2,gZ = 0);
-			setTile(gX,gY+1,gZ = actBlock1);
-			setTile(gX,gY,gZ = actBlock2);
-			setTile(gX,gY-1,gZ = actBlock3);
+			setTile(gX,gY+2,gZ,0);
+			setTile(gX,gY+1,gZ,actBlock1);
+			setTile(gX,gY,gZ,actBlock2);
+			setTile(gX,gY-1,gZ,actBlock3);
 			gY++;
 		}
 	}
