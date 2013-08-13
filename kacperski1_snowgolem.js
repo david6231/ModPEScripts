@@ -152,7 +152,7 @@ function modTick()
 			
 		}
 	
-		if(getTile(gX,gY-1,gZ == 0)
+		if(getTile(gX,gY-1,gZ == 0))
 		{
 			setTile(gX,gY+2,gZ = 0);
 			setTile(gX,gY+1,gZ = actBlock1);
