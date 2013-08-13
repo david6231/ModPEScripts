@@ -7,13 +7,12 @@ function generateCaves()
 	var cY;
 	var cZ;
 	var smaY = 129;
-	
 	clientMessage("[Caves] Loading data...");
-	for(int xx; xx < 256; xx++)
+	for(var xx; xx < 256; xx++)
 	{
-		for(int zz; zz < 256; zz++)
+		for(var zz; zz < 256; zz++)
 		{
-			for(int yy; yy < 128; yy++)
+			for(var yy; yy < 128; yy++)
 			{
 				if(getTile(xx,yy,zz) == 2)
 				{
@@ -23,11 +22,11 @@ function generateCaves()
 		}
 	}
 	clientMessage("[Caves] Generating caves...");
-	for(int xx; xx < 256; xx++)
+	for(var xx; xx < 256; xx++)
 	{
-		for(int zz; zz < 256; zz++)
+		for(var zz; zz < 256; zz++)
 		{
-			for(int yy; yy < smaY; yy++)
+			for(var yy; yy < smaY; yy++)
 			{
 				switch(getTile(xx,yy,zz))
 				{
