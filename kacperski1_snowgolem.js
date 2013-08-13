@@ -1,5 +1,5 @@
 // Snow Golem mod by kacperski1
-// version 0.1e
+// version 0.1f
 
 var gX;
 var gY;
@@ -72,10 +72,27 @@ function moveTick()
 	return 0;
 }
 
+function checkExistence()
+{
+	if(getTile(gX,gY,gZ) == actBlock3)
+	{
+		if(getTile(gX,gY+1,gZ) == actBlock2)
+		{
+			if(getTile(gX,gY+2,gZ) == actBlock1)
+			{
+				return 1;
+			}
+		}
+	}
+	return 0;
+}
+
 function modTick()
 {
 	if(active == 1)
 	{
+		if(!checkExistence()) {active = 0;}
+	
 		if(moveTick())
 		{
 			if(Math.floor((Math.random()*8)+1) == 4)
