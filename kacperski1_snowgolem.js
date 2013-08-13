@@ -1,5 +1,5 @@
 // Snow Golem mod by kacperski1
-// version 0.1
+// version 0.1b
 
 var gX;
 var gY;
@@ -87,7 +87,7 @@ function modTick()
 				case 1:
 					if(getTile(gX+1,gY,gZ) == 0 && getTile(gX+1,gY+1,gZ) == 0 && getTile(gX+1,gY+2,gZ) == 0)
 					{
-						setTile(gX,gY,gZ,0);
+						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
 						setTile(gX,gY+2,gZ,0);
 						
@@ -97,12 +97,13 @@ function modTick()
 						
 						gX = gX+1;
 					}
+					else {direction = Math.floor((Math.random()*4)+1);}
 					break;
 					
 				case 2:
 					if(getTile(gX-1,gY,gZ) == 0 && getTile(gX-1,gY+1,gZ) == 0 && getTile(gX-1,gY+2,gZ) == 0)
 					{
-						setTile(gX,gY,gZ,0);
+						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
 						setTile(gX,gY+2,gZ,0);
 						
@@ -112,12 +113,13 @@ function modTick()
 						
 						gX = gX-1;
 					}
+					else {direction = Math.floor((Math.random()*4)+1);}
 					break;
 
 				case 3:
 					if(getTile(gX,gY,gZ+1) == 0 && getTile(gX,gY+1,gZ+1) == 0 && getTile(gX,gY+2,gZ+1) == 0)
 					{
-						setTile(gX,gY,gZ,0);
+						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
 						setTile(gX,gY+2,gZ,0);
 						
@@ -127,12 +129,13 @@ function modTick()
 						
 						gZ = gZ+1;
 					}
+					else {direction = Math.floor((Math.random()*4)+1);}
 					break;
 					
 				case 4:
 					if(getTile(gX,gY,gZ-1) == 0 && getTile(gX,gY+1,gZ-1) == 0 && getTile(gX,gY+2,gZ-1) == 0)
 					{
-						setTile(gX,gY,gZ,0);
+						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
 						setTile(gX,gY+2,gZ,0);
 						
@@ -142,8 +145,20 @@ function modTick()
 						
 						gZ = gZ-1;
 					}
+					else {direction = Math.floor((Math.random()*4)+1);}
 					break;
 			}
+			
+			
+		}
+	
+		if(getTile(gX,gY-1,gZ == 0)
+		{
+			setTile(gX,gY+2,gZ = 0);
+			setTile(gX,gY+1,gZ = actBlock1);
+			setTile(gX,gY,gZ = actBlock2);
+			setTile(gX,gY-1,gZ = actBlock3);
+			gY++;
 		}
 	}
 }
