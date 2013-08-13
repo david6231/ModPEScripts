@@ -1,5 +1,5 @@
 // Snow Golem mod by kacperski1
-// version 0.1b
+// version 0.1c
 
 var gX;
 var gY;
@@ -85,7 +85,7 @@ function modTick()
 			switch(direction)
 			{
 				case 1:
-					if(getTile(gX+1,gY,gZ) == 0 && getTile(gX+1,gY+1,gZ) == 0 && getTile(gX+1,gY+2,gZ) == 0)
+					if((getTile(gX+1,gY,gZ) == 0 || getTile(gX+1,gY,gZ) == 78) && getTile(gX+1,gY+1,gZ) == 0 && getTile(gX+1,gY+2,gZ) == 0)
 					{
 						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
@@ -101,7 +101,7 @@ function modTick()
 					break;
 					
 				case 2:
-					if(getTile(gX-1,gY,gZ) == 0 && getTile(gX-1,gY+1,gZ) == 0 && getTile(gX-1,gY+2,gZ) == 0)
+					if((getTile(gX-1,gY,gZ) == 0 || getTile(gX-1,gY,gZ) == 78) && getTile(gX-1,gY+1,gZ) == 0 && getTile(gX-1,gY+2,gZ) == 0)
 					{
 						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
@@ -117,7 +117,7 @@ function modTick()
 					break;
 
 				case 3:
-					if(getTile(gX,gY,gZ+1) == 0 && getTile(gX,gY+1,gZ+1) == 0 && getTile(gX,gY+2,gZ+1) == 0)
+					if((getTile(gX,gY,gZ+1) == 0 || getTile(gX,gY,gZ+1) == 78) && getTile(gX,gY+1,gZ+1) == 0 && getTile(gX,gY+2,gZ+1) == 0)
 					{
 						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
@@ -133,7 +133,7 @@ function modTick()
 					break;
 					
 				case 4:
-					if(getTile(gX,gY,gZ-1) == 0 && getTile(gX,gY+1,gZ-1) == 0 && getTile(gX,gY+2,gZ-1) == 0)
+					if((getTile(gX,gY,gZ-1) == 0 || getTile(gX,gY,gZ-1) == 78) && getTile(gX,gY+1,gZ-1) == 0 && getTile(gX,gY+2,gZ-1) == 0)
 					{
 						setTile(gX,gY,gZ,78);
 						setTile(gX,gY+1,gZ,0);
@@ -152,7 +152,7 @@ function modTick()
 			
 		}
 	
-		if(getTile(gX,gY-1,gZ == 0))
+		if(getTile(gX,gY-1,gZ) == 0)
 		{
 			setTile(gX,gY+2,gZ = 0);
 			setTile(gX,gY+1,gZ = actBlock1);
