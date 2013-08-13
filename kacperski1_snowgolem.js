@@ -1,5 +1,5 @@
 // Snow Golem mod by kacperski1
-// version 0.1f
+// version 0.2
 
 var gX;
 var gY;
@@ -95,7 +95,7 @@ function modTick()
 	
 		if(moveTick())
 		{
-			if(Math.floor((Math.random()*8)+1) == 4)
+			if(Math.floor((Math.random()*5)+1) == 4)
 			{
 				direction = Math.floor((Math.random()*4)+1);
 			}
