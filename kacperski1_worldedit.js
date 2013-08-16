@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.5a
+// version 0.5b
 
 var x1 = 0;
 var y1 = 0;
@@ -15,13 +15,19 @@ var uz1;
 var ux2;
 var uy2;
 var uz2;
+var hx1;
+var hx2;
+var hy1;
+var hy2;
+var hz1;
+var hz2;
 
 function wMessage(msg)
 {
 	clientMessage("[WorldEdit] "+msg);
 }
 
-function saveToUndo(x1,y1,z1,x2,y2,z2)
+function saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ)
 {
 			ux1 = lowestX;
 			uy1 = lowestY;
@@ -91,7 +97,7 @@ function procCmd(cmd)
 				var highestY = Math.max(y1, y2);
 				var highestZ = Math.max(z1, z2);
 				var BlockNum = 0;
-				saveToUndo(x1,y1,z1,x2,y2,z2);
+				saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 
 				for(var x = lowestX; x <= highestX; x++)
 				{
@@ -121,7 +127,7 @@ function procCmd(cmd)
 				var highestZ = Math.max(z1, z2);
 				var BlockNum = 0;
 				
-				saveToUndo(x1,y1,z1,x2,y2,z2);
+				saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 
 				for(var x = lowestX; x <= highestX; x++)
 				{
@@ -151,7 +157,7 @@ function procCmd(cmd)
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
 				
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -180,7 +186,7 @@ function procCmd(cmd)
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
 			
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 				
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -209,7 +215,7 @@ function procCmd(cmd)
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
 			
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 				
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -238,7 +244,7 @@ function procCmd(cmd)
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
 			
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -326,7 +332,7 @@ function procCmd(cmd)
 			var wY = (highestY - lowestY) + 1;
 			var wZ = (highestZ - lowestZ) + 1;
 			var BlockNum = 0;
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 			
 			clip = new Array(wX);
 			for (var x = 0; x < wX; ++x) 
@@ -355,7 +361,7 @@ function procCmd(cmd)
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
 			
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -396,7 +402,7 @@ function procCmd(cmd)
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
 			
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -461,7 +467,7 @@ function procCmd(cmd)
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
 			
-			saveToUndo(x1,y1,z1,x2,y2,z2);
+			saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
