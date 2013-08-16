@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.5b
+// version 0.5c
 
 var x1 = 0;
 var y1 = 0;
@@ -15,37 +15,32 @@ var uz1;
 var ux2;
 var uy2;
 var uz2;
-var hx1;
-var hx2;
-var hy1;
-var hy2;
-var hz1;
-var hz2;
+
+var hx;
+var hy;
+var hz;
 
 function wMessage(msg)
 {
 	clientMessage("[WorldEdit] "+msg);
 }
 
-function saveToUndo(x1,y1,z1,x2,y2,z2,lowestX,lowestY,lowestZ,highestX,highestY,highestZ)
-{
-			ux1 = lowestX;
-			uy1 = lowestY;
-			uz1 = lowestZ;
-			ux2 = highestX;
-			uy2 = highestY;
-			uz2 = highestZ;
+function saveToUndo(x1,y1,z1,x2,y2,z2,ux1,uy1,uz1,ux2,uy2,uz2)
+{			
+			hx = ux2 - ux1;
+			hy = uy2 - uy1;
+			hz = uz2 - uz1;
 
-			toundo = new Array(wX);
-			for (var x = 0; x < wX; ++x) 
+			toundo = new Array(hx);
+			for (var x = 0; x < hx; ++x) 
 			{
-				toundo[x] = new Array(wY);
-				for (var y = 0; y < wY; ++y) 
+				toundo[x] = new Array(hy);
+				for (var y = 0; y < hy; ++y) 
 				{
-					toundo[x][y] = new Array(wZ);
-					for (var z = 0; z < wZ; ++z) 
+					toundo[x][y] = new Array(hz);
+					for (var z = 0; z < hz; ++z) 
 					{
-						toundo[x][y][z] = getTile(lowestX + x, lowestY + y, lowestZ + z);
+						toundo[x][y][z] = getTile(ux1 + x, uy1 + y, uz1 + z);
 					}
 				}
 			}
