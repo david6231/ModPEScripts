@@ -74,13 +74,10 @@ function procCmd(cmd)
 	switch(Command[0])
 	{
 		case "help":
-			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, //snow, //thaw, //hcuboid, //cut, //copy, //paste, //netherize, //unnetherize, //reactor, //untree, //selectall, //undo");
-			break;
-			
 		case "/help":
 			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, //snow, //thaw, //hcuboid, //cut, //copy, //paste, //netherize, //unnetherize, //reactor, //untree, //selectall, //undo");
 			break;
-		
+			
 		case "/wand":
 			addItemInventory(267,1); // Iron Sword
 			addItemInventory(292,1); // Iron Hoe
