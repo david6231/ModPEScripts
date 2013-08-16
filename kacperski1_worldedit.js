@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.5
+// version 0.5a
 
 var x1 = 0;
 var y1 = 0;
@@ -83,7 +83,6 @@ function procCmd(cmd)
 			//if(Command[1] == 0) {wMessage("Not enough parameters!");}
 			//else
 			//{
-				saveToUndo(x1,y1,z1,x2,y2,z2)
 				
 				var lowestX = Math.min(x1, x2);
 				var lowestY = Math.min(y1, y2);
@@ -92,6 +91,7 @@ function procCmd(cmd)
 				var highestY = Math.max(y1, y2);
 				var highestZ = Math.max(z1, z2);
 				var BlockNum = 0;
+				saveToUndo(x1,y1,z1,x2,y2,z2);
 
 				for(var x = lowestX; x <= highestX; x++)
 				{
@@ -112,7 +112,6 @@ function procCmd(cmd)
 			//if(Command[1] == 0 || Command[2] == 0) {wMessage("Not enough parameters!");}
 			//else
 			//{
-				saveToUndo(x1,y1,z1,x2,y2,z2)
 			
 				var lowestX = Math.min(x1, x2);
 				var lowestY = Math.min(y1, y2);
@@ -121,6 +120,8 @@ function procCmd(cmd)
 				var highestY = Math.max(y1, y2);
 				var highestZ = Math.max(z1, z2);
 				var BlockNum = 0;
+				
+				saveToUndo(x1,y1,z1,x2,y2,z2);
 
 				for(var x = lowestX; x <= highestX; x++)
 				{
@@ -141,7 +142,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/drain":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -151,6 +151,8 @@ function procCmd(cmd)
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
 				
+			saveToUndo(x1,y1,z1,x2,y2,z2);
+			
 			for(var x = lowestX; x <= highestX; x++)
 			{
 				for(var y = lowestY; y <= highestY; y++)
@@ -169,7 +171,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/snow":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -178,6 +179,8 @@ function procCmd(cmd)
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
+			
+			saveToUndo(x1,y1,z1,x2,y2,z2);
 				
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -197,7 +200,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/thaw":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -206,6 +208,8 @@ function procCmd(cmd)
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
+			
+			saveToUndo(x1,y1,z1,x2,y2,z2);
 				
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -225,7 +229,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/hcuboid":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -234,6 +237,8 @@ function procCmd(cmd)
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
 			var BlockNum = 0;
+			
+			saveToUndo(x1,y1,z1,x2,y2,z2);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -256,7 +261,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/copy":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -287,6 +291,12 @@ function procCmd(cmd)
 			break;
 			
 		case "/paste":
+			lowestX = x1;
+			lowestY = y1;
+			lowestZ = z1;
+			highestX = x1+clip.length;
+			highestY = y1+clip[0].length;
+			highestZ = z1+zlip[0][0].length;
 			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var BlockNum = 0;
@@ -305,7 +315,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/cut":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -317,6 +326,7 @@ function procCmd(cmd)
 			var wY = (highestY - lowestY) + 1;
 			var wZ = (highestZ - lowestZ) + 1;
 			var BlockNum = 0;
+			saveToUndo(x1,y1,z1,x2,y2,z2);
 			
 			clip = new Array(wX);
 			for (var x = 0; x < wX; ++x) 
@@ -337,7 +347,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/netherize":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -345,6 +354,8 @@ function procCmd(cmd)
 			var highestX = Math.max(x1, x2);
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
+			
+			saveToUndo(x1,y1,z1,x2,y2,z2);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -377,7 +388,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/unnetherize":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -385,6 +395,8 @@ function procCmd(cmd)
 			var highestX = Math.max(x1, x2);
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
+			
+			saveToUndo(x1,y1,z1,x2,y2,z2);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
@@ -417,9 +429,7 @@ function procCmd(cmd)
 			wMessage("Successfully Unnetherized!");
 			break;
 			
-		case "/reactor":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
-		
+		case "/reactor":	
 			setTile(x1,y1+1,z1,4);
 			setTile(x1-1,y1+1,z1,4);
 			setTile(x1+1,y1+1,z1,4);
@@ -443,7 +453,6 @@ function procCmd(cmd)
 			break;
 			
 		case "/untree":
-			saveToUndo(x1,y1,z1,x2,y2,z2)
 		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
@@ -451,6 +460,8 @@ function procCmd(cmd)
 			var highestX = Math.max(x1, x2);
 			var highestY = Math.max(y1, y2);
 			var highestZ = Math.max(z1, z2);
+			
+			saveToUndo(x1,y1,z1,x2,y2,z2);
 			
 			for(var x = lowestX; x <= highestX; x++)
 			{
