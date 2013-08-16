@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.4b
+// version 0.5
 
 var x1 = 0;
 var y1 = 0;
@@ -8,10 +8,56 @@ var x2 = 0;
 var y2 = 0;
 var z2 = 0;
 var clip;
+var toundo;
+var ux1;
+var uy1;
+var uz1;
+var ux2;
+var uy2;
+var uz2;
 
 function wMessage(msg)
 {
 	clientMessage("[WorldEdit] "+msg);
+}
+
+function saveToUndo(x1,y1,z1,x2,y2,z2)
+{
+			ux1 = lowestX;
+			uy1 = lowestY;
+			uz1 = lowestZ;
+			ux2 = highestX;
+			uy2 = highestY;
+			uz2 = highestZ;
+
+			toundo = new Array(wX);
+			for (var x = 0; x < wX; ++x) 
+			{
+				toundo[x] = new Array(wY);
+				for (var y = 0; y < wY; ++y) 
+				{
+					toundo[x][y] = new Array(wZ);
+					for (var z = 0; z < wZ; ++z) 
+					{
+						toundo[x][y][z] = getTile(lowestX + x, lowestY + y, lowestZ + z);
+					}
+				}
+			}
+}
+
+function undo()
+{
+	for(var x = ux1; x < ux2; x++)
+	{
+		for(var y = uy1; y < uy2; y++)
+		{
+			for(var z = uz1; z < uz2; z++)
+			{
+				setTile(x,y,z,toundo[x][y][z]);
+			}
+		}
+	}
+	wMessage("Undo successful!");
 }
 
 function procCmd(cmd)
@@ -20,19 +66,25 @@ function procCmd(cmd)
 	switch(Command[0])
 	{
 		case "help":
-			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, /snow, /thaw, //hcuboid, //cut, //copy, //paste, /netherize, /unnetherize, /reactor, /untree, /selectall");
+			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, //snow, //thaw, //hcuboid, //cut, //copy, //paste, //netherize, //unnetherize, //reactor, //untree, //selectall, //undo");
+			break;
+			
+		case "/help":
+			clientMessage("Available commands: /help, //wand, //set, //replace, //drain, //snow, //thaw, //hcuboid, //cut, //copy, //paste, //netherize, //unnetherize, //reactor, //untree, //selectall, //undo");
 			break;
 		
 		case "/wand":
-			addItemInventory(271,1); // Wooden Axe
-			addItemInventory(290,1); // Wooden Hoe
-			wMessage("Wands given to player! (use axe to position 1, hoe to position 2)");
+			addItemInventory(267,1); // Iron Sword
+			addItemInventory(292,1); // Iron Hoe
+			wMessage("Wands given to player! (use sword to position 1, hoe to position 2)");
 			break;
 			
 		case "/set":
 			//if(Command[1] == 0) {wMessage("Not enough parameters!");}
 			//else
 			//{
+				saveToUndo(x1,y1,z1,x2,y2,z2)
+				
 				var lowestX = Math.min(x1, x2);
 				var lowestY = Math.min(y1, y2);
 				var lowestZ = Math.min(z1, z2);
@@ -60,6 +112,8 @@ function procCmd(cmd)
 			//if(Command[1] == 0 || Command[2] == 0) {wMessage("Not enough parameters!");}
 			//else
 			//{
+				saveToUndo(x1,y1,z1,x2,y2,z2)
+			
 				var lowestX = Math.min(x1, x2);
 				var lowestY = Math.min(y1, y2);
 				var lowestZ = Math.min(z1, z2);
@@ -87,6 +141,8 @@ function procCmd(cmd)
 			break;
 			
 		case "/drain":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -112,7 +168,9 @@ function procCmd(cmd)
 			wMessage("Successfully drained "+BlockNum+" blocks!");
 			break;
 			
-		case "snow":
+		case "/snow":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -138,7 +196,9 @@ function procCmd(cmd)
 			wMessage("Successfully snowed "+BlockNum+" blocks!");
 			break;
 			
-		case "thaw":
+		case "/thaw":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -165,6 +225,8 @@ function procCmd(cmd)
 			break;
 			
 		case "/hcuboid":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -194,6 +256,8 @@ function procCmd(cmd)
 			break;
 			
 		case "/copy":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -223,6 +287,8 @@ function procCmd(cmd)
 			break;
 			
 		case "/paste":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var BlockNum = 0;
 			for (var x = 0; x < clip.length; ++x) 
 			{
@@ -239,6 +305,8 @@ function procCmd(cmd)
 			break;
 			
 		case "/cut":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -268,7 +336,9 @@ function procCmd(cmd)
 			wMessage("Moved "+BlockNum+" blocks to clipboard");
 			break;
 			
-		case "netherize":
+		case "/netherize":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -306,7 +376,9 @@ function procCmd(cmd)
 			wMessage("Successfully Netherized!");
 			break;
 			
-		case "unnetherize":
+		case "/unnetherize":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -345,7 +417,9 @@ function procCmd(cmd)
 			wMessage("Successfully Unnetherized!");
 			break;
 			
-		case "reactor":
+		case "/reactor":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			setTile(x1,y1+1,z1,4);
 			setTile(x1-1,y1+1,z1,4);
 			setTile(x1+1,y1+1,z1,4);
@@ -368,7 +442,9 @@ function procCmd(cmd)
 			wMessage("Nether Reactor created successfully1!");
 			break;
 			
-		case "untree":
+		case "/untree":
+			saveToUndo(x1,y1,z1,x2,y2,z2)
+		
 			var lowestX = Math.min(x1, x2);
 			var lowestY = Math.min(y1, y2);
 			var lowestZ = Math.min(z1, z2);
@@ -402,12 +478,16 @@ function procCmd(cmd)
 			wMessage("Whole world selected!");
 			break;
 			
+		case "/undo":
+			undo();
+			break;
+			
 	}
 }
 
 function useItem(x,y,z,itemId,blockId)
 {
-	if(itemId == 271)
+	if(itemId == 267)
 	{
 		x1 = x;
 		y1 = y;
@@ -416,7 +496,7 @@ function useItem(x,y,z,itemId,blockId)
 		preventDefault();
 	}
 	
-	if(itemId == 290)
+	if(itemId == 292)
 	{
 		x2 = x;
 		y2 = y;
