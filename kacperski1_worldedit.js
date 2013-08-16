@@ -1,5 +1,5 @@
 // WorldEditPE mod by kacperski1
-// version 0.5c
+// version 0.5d
 
 var x1 = 0;
 var y1 = 0;
@@ -25,11 +25,18 @@ function wMessage(msg)
 	clientMessage("[WorldEdit] "+msg);
 }
 
-function saveToUndo(x1,y1,z1,x2,y2,z2,ux1,uy1,uz1,ux2,uy2,uz2)
+function saveToUndo(x1,y1,z1,x2,y2,z2,aux1,auy1,auz1,aux2,auy2,auz2)
 {			
-			hx = ux2 - ux1;
-			hy = uy2 - uy1;
-			hz = uz2 - uz1;
+			hx = aux2 - aux1;
+			hy = auy2 - auy1;
+			hz = auz2 - auz1;
+			
+			uz1 = auz1;
+			uy1 = auy1;
+			ux1 = aux1;
+			uz2 = auz2;
+			uy2 = auy2;
+			ux2 = aux2;
 
 			toundo = new Array(hx);
 			for (var x = 0; x < hx; ++x) 
