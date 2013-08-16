@@ -1,5 +1,5 @@
 // Snow Golem mod by kacperski1
-// version 0.3
+// version 0.3a
 
 var gX;
 var gY;
@@ -16,10 +16,13 @@ var actBlock1 = 103;
 var actBlock2 = 80;
 var actBlock3 = 80;
 
+var debugMode = 1;
+
 function useItem(x,y,z,itemId,blockId)
 {
 	if(itemId == activationItem)
 	{
+		if(debugMode) {clientMessage("USED ACTIVATION ITEM ON SOMETHING");}
 		if(blockId == actBlock1 && getTile(x,y-1,z) == actBlock2 && getTile(x,y-2,z) == actBlock3)
 		{
 			gX = x;
@@ -27,6 +30,7 @@ function useItem(x,y,z,itemId,blockId)
 			gZ = z;
 			direction = Math.floor((Math.random()*4)+1);
 			active = 1;
+			if(debugMode) {clientMessage("ACTIVATED");}
 		}
 
 		if(blockId == actBlock2 && getTile(x,y+1,z) == actBlock1 && getTile(x,y-1,z) == actBlock3)
@@ -36,6 +40,7 @@ function useItem(x,y,z,itemId,blockId)
 			gZ = z;
 			direction = Math.floor((Math.random()*4)+1);
 			active = 1;
+			if(debugMode) {clientMessage("ACTIVATED");}
 		}
 		
 		if(blockId == actBlock3 && getTile(x,y+1,z) == actBlock2 && getTile(x,y+2,z) == actBlock1)
@@ -45,6 +50,7 @@ function useItem(x,y,z,itemId,blockId)
 			gZ = z;
 			direction = Math.floor((Math.random()*4)+1);
 			active = 1;
+			if(debugMode) {clientMessage("ACTIVATED");}
 		}
 	}
 }
@@ -145,6 +151,7 @@ function modTick()
 		{
 			if(Math.floor((Math.random()*5)+1) == 4)
 			{
+				if(debugMode) {clientMessage("RANDOMIZING DIRECTION");}
 				direction = Math.floor((Math.random()*4)+1);
 			}
 			switch(direction)
@@ -152,6 +159,7 @@ function modTick()
 				case 1:
 					if(canMoveOn(gX+1,gY,gZ))
 					{
+						if(debugMode) {clientMessage("MOVING");}
 						MoveOn(gX+1,gY,gZ);
 						gX = gX+1;
 					}
@@ -161,6 +169,7 @@ function modTick()
 				case 2:
 					if(canMoveOn(gX-1,gY,gZ))
 					{
+						if(debugMode) {clientMessage("MOVING");}
 						MoveOn(gX-1,gY,gZ);
 						gX = gX-1;
 					}
@@ -170,6 +179,7 @@ function modTick()
 				case 3:
 					if(canMoveOn(gX,gY,gZ+1))
 					{
+						if(debugMode) {clientMessage("MOVING");}
 						MoveOn(gX,gY,gZ+1);
 						gZ = gZ+1;
 					}
@@ -179,6 +189,7 @@ function modTick()
 				case 4:
 					if(canMoveOn(gX,gY,gZ-1))
 					{
+						if(debugMode) {clientMessage("MOVING");}
 						MoveOn(gX,gY,gZ-1);
 						gZ = gZ-1;
 					}
