@@ -9,12 +9,12 @@ var y2 = 0;
 var z2 = 0;
 var clip;
 var toundo;
-var ux1;
-var uy1;
-var uz1;
-var ux2;
-var uy2;
-var uz2;
+var ux1 = 0;
+var uy1 = 0;
+var uz1 = 0;
+var ux2 = 0;
+var uy2 = 0;
+var uz2 = 0;
 
 var hx;
 var hy;
@@ -55,17 +55,17 @@ function saveToUndo(x1,y1,z1,x2,y2,z2,aux1,auy1,auz1,aux2,auy2,auz2)
 
 function undo()
 {
-	for(var x = ux1; x < ux2; x++)
-	{
-		for(var y = uy1; y < uy2; y++)
-		{
-			for(var z = uz1; z < uz2; z++)
-			{
-				setTile(x,y,z,toundo[x][y][z]);
-			}
-		}
-	}
-	wMessage("Undo successful!");
+ for(var x = 0; x != hx; x++)
+ {
+  for(var y = 0; y != hy; y++)
+  {
+   for(var z = 0; z != hz; z++)
+   {
+    setTile(ux1 + x, uy1 + y, uz1+z, toundo[x][y][z]);
+   }
+  }
+ }
+ wMessage("Undo successful!");
 }
 
 function procCmd(cmd)
