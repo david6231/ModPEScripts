@@ -114,7 +114,7 @@ function canMoveOnFloor(px,py,pz)
 		case 78:
 		return 0; break;
 		
-		return 1;
+		default: return 1;break;
 	}
 }
 
