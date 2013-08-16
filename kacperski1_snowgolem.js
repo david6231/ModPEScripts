@@ -112,10 +112,12 @@ function canMoveOnFloor(px,py,pz)
 		case 68:
 		case 71:
 		case 78:
+		if(debugMode) {clientMessage("CANNOT MOVE ON FLOOR");}
 		return 0; break;
-		
-		default: return 1;break;
+		default: if(debugMode) {clientMessage("CAN MOVE ON FLOOR");} return 1; break;
 	}
+	if(debugMode) {clientMessage("CAN MOVE ON FLOOR");}
+	return 1;
 }
 
 function canMoveOn(ox,oy,oz)
