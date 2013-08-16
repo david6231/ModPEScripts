@@ -9,14 +9,13 @@ var direction;
 var active = 0;
 var tickCurrent = 0;
 var tickDuration = 15;
-var debugActive = 0;
 
 var activationItem = 344;
 var actBlock1 = 103;
 var actBlock2 = 80;
 var actBlock3 = 80;
 
-var debugMode = 1;
+var debugMode = 0;
 
 function useItem(x,y,z,itemId,blockId)
 {
