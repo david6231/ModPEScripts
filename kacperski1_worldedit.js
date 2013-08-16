@@ -55,11 +55,11 @@ function saveToUndo(x1,y1,z1,x2,y2,z2,aux1,auy1,auz1,aux2,auy2,auz2)
 
 function undo()
 {
- for(var x = 0; x != hx; x++)
+ for(var x = 0; x != hx+1; x++)
  {
-  for(var y = 0; y != hy; y++)
+  for(var y = 0; y != hy+1; y++)
   {
-   for(var z = 0; z != hz; z++)
+   for(var z = 0; z != hz+1; z++)
    {
     setTile(ux1 + x, uy1 + y, uz1+z, toundo[x][y][z]);
    }
