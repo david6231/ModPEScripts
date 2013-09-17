@@ -1,5 +1,5 @@
 // Minecart mod by kacperski1
-// version 0.0.1
+// version 0.0.2
 
 var MinecartBlockID = 48; //Mossy Cobblestone
 var MinecartItemID = 421;
@@ -11,7 +11,7 @@ var cMinY;
 var cMinZ;
 
 var CTick = 0;
-var MinecartTick = 10;
+var MinecartTick = 5;
 var riding = 0;
 
 function setMinecartItem()
