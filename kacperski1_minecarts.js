@@ -73,11 +73,11 @@ function modTick()
 					break;
 					
 				case 2:
-					if(getTile(cMinX - 1,cMinY - 1,cMinZ) == RailBlockID && getTile(cMinX - 1,cMinY,cMinZ) == 0)
+					if(getTile(cMinX,cMinY - 1,cMinZ - 1) == RailBlockID && getTile(cMinX,cMinY,cMinZ - 1) == 0)
 					{
 						setTile(cMinX,cMinY,cMinZ,0);
-						setTile(cMinX - 1,cMinY,cMinZ,MinecartBlockID);
-						cMinX = cMinX - 1;
+						setTile(cMinX,cMinY,cMinZ - 1,MinecartBlockID);
+						cMinZ = cMinZ - 1;
 						setPosition(getPlayerEnt(), cMinX, cMinY + 2, cMinZ);
 						CTick = 0;
 					}
@@ -85,11 +85,11 @@ function modTick()
 					break;
 					
 				case 3:
-					if(getTile(cMinX,cMinY - 1,cMinZ - 1) == RailBlockID && getTile(cMinX,cMinY,cMinZ - 1) == 0)
+					if(getTile(cMinX - 1,cMinY - 1,cMinZ) == RailBlockID && getTile(cMinX - 1,cMinY,cMinZ) == 0)
 					{
 						setTile(cMinX,cMinY,cMinZ,0);
-						setTile(cMinX,cMinY,cMinZ - 1,MinecartBlockID);
-						cMinZ = cMinZ - 1;
+						setTile(cMinX - 1,cMinY,cMinZ,MinecartBlockID);
+						cMinX = cMinX - 1;
 						setPosition(getPlayerEnt(), cMinX, cMinY + 2, cMinZ);
 						CTick = 0;
 					}
