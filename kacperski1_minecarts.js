@@ -45,7 +45,7 @@ function checkToMove(xx,yy,zz)
 	if(getTile(xx,yy - 1,zz) == RailBlockID && getTile(xx,yy,zz) == 0)
 	{
 		setTile(cMinX,cMinY,cMinZ,0);
-		setTile(xx,cMinY,cMinZ,MinecartBlockID);
+		setTile(xx,yy,zz,MinecartBlockID);
 		cMinX = xx;
 		cMinY = yy;
 		cMinZ = zz;
