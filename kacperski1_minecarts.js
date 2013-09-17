@@ -34,9 +34,26 @@ function useItem(x, y, z, itemId, blockId, side)
 			cMinZ = z;
 			setPosition(getPlayerEnt(),cMinX,cMinY + 1,cMinZ);
 			riding = 1;
+			preventDefault();
 		}
-		else {riding = 0;}
+		else {riding = 0;preventDefault();}
 	}
+}
+
+function checkToMove(xx,yy,zz)
+{
+	if(getTile(xx,yy - 1,zz) == RailBlockID && getTile(xx,yy,zz) == 0)
+	{
+		setTile(cMinX,cMinY,cMinZ,0);
+		setTile(xx,cMinY,cMinZ,MinecartBlockID);
+		cMinX = xx;
+		cMinY = yy;
+		cMinZ = zz;
+		setPosition(getPlayerEnt(), cMinX, cMinY + 2, cMinZ);
+		CTick = 0;
+		return 1;
+	}
+	else {return 0;}
 }
 
 function modTick()
@@ -49,51 +66,119 @@ function modTick()
 			switch(Direction)
 			{
 				case 0:
-					if(getTile(cMinX + 1,cMinY - 1,cMinZ) == RailBlockID && getTile(cMinX + 1,cMinY,cMinZ) == 0)
+					if(checkToMove(cMinX + 1,cMinY,cMinZ))
 					{
-						setTile(cMinX,cMinY,cMinZ,0);
-						setTile(cMinX + 1,cMinY,cMinZ,MinecartBlockID);
-						cMinX = cMinX + 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY + 2, cMinZ);
-						CTick = 0;
+						Direction = 0;
 					}
-					else {Direction = 1;CTick--;}
+					else
+					{
+						if(checkToMove(cMinX, cMinY, cMinZ + 1))
+						{
+							Direction = 1;
+						}
+						else
+						{
+							if(checkToMove(cMinX, cMinY, cMinZ - 1))
+							{
+								Direction = 2;
+							}
+							else
+							{
+								if(checkToMove(cMinX - 1, cMinY, cMinZ))
+								{
+									Direction = 3;
+								}
+							}
+						}
+						
+					}
 					break;
 					
 				case 1:
-					if(getTile(cMinX,cMinY - 1,cMinZ + 1) == RailBlockID && getTile(cMinX,cMinY,cMinZ + 1) == 0)
+					if(checkToMove(cMinX,cMinY,cMinZ + 1))
 					{
-						setTile(cMinX,cMinY,cMinZ,0);
-						setTile(cMinX,cMinY,cMinZ + 1,MinecartBlockID);
-						cMinZ = cMinZ + 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY + 2, cMinZ);
-						CTick = 0;
+						Direction = 1;
 					}
-					else {Direction = 2;CTick--;}
+					else
+					{
+						if(checkToMove(cMinX + 1, cMinY, cMinZ))
+						{
+							Direction = 0;
+						}
+						else
+						{
+							if(checkToMove(cMinX - 1, cMinY, cMinZ))
+							{
+								Direction = 3;
+							}
+							else
+							{
+								if(checkToMove(cMinX, cMinY, cMinZ - 1))
+								{
+									Direction = 2;
+								}
+							}
+						}
+						
+					}
 					break;
 					
 				case 2:
-					if(getTile(cMinX,cMinY - 1,cMinZ - 1) == RailBlockID && getTile(cMinX,cMinY,cMinZ - 1) == 0)
+					if(checkToMove(cMinX,cMinY,cMinZ - 1))
 					{
-						setTile(cMinX,cMinY,cMinZ,0);
-						setTile(cMinX,cMinY,cMinZ - 1,MinecartBlockID);
-						cMinZ = cMinZ - 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY + 2, cMinZ);
-						CTick = 0;
+						Direction = 2;
 					}
-					else {Direction = 3;CTick--;}
+					else
+					{
+						if(checkToMove(cMinX + 1, cMinY, cMinZ))
+						{
+							Direction = 0;
+						}
+						else
+						{
+							if(checkToMove(cMinX - 1, cMinY, cMinZ))
+							{
+								Direction = 3;
+							}
+							else
+							{
+								if(checkToMove(cMinX, cMinY, cMinZ + 1))
+								{
+									Direction = 1;
+								}
+							}
+						}
+						
+					}
 					break;
 					
 				case 3:
-					if(getTile(cMinX - 1,cMinY - 1,cMinZ) == RailBlockID && getTile(cMinX - 1,cMinY,cMinZ) == 0)
+					if(checkToMove(cMinX - 1,cMinY,cMinZ))
 					{
-						setTile(cMinX,cMinY,cMinZ,0);
-						setTile(cMinX - 1,cMinY,cMinZ,MinecartBlockID);
-						cMinX = cMinX - 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY + 2, cMinZ);
-						CTick = 0;
+						Direction = 3;
 					}
-					else {Direction = 0;CTick--;}
+					else
+					{
+						if(checkToMove(cMinX, cMinY, cMinZ + 1))
+						{
+							Direction = 1;
+						}
+						else
+						{
+							if(checkToMove(cMinX, cMinY, cMinZ - 1))
+							{
+								Direction = 2;
+							}
+							else
+							{
+								if(checkToMove(cMinX + 1, cMinY, cMinZ))
+								{
+									Direction = 0;
+								}
+							}
+						}
+						
+					}
 					break;
 			}
 		}
