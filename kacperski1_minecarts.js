@@ -35,7 +35,7 @@ function useItem(x, y, z, itemId, blockId, side)
 			setPosition(getPlayerEnt(),cMinX,cMinY,cMinZ);
 			riding = 1;
 		}
-		else {riding = 0;)
+		else {riding = 0;}
 	}
 }
 
