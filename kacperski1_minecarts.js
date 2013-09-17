@@ -32,7 +32,7 @@ function useItem(x, y, z, itemId, blockId, side)
 			cMinX = x;
 			cMinY = y;
 			cMinZ = z;
-			setPosition(getPlayerEnt(),cMinX,cMinY,cMinZ);
+			setPosition(getPlayerEnt(),cMinX,cMinY + 1,cMinZ);
 			riding = 1;
 		}
 		else {riding = 0;}
@@ -54,7 +54,7 @@ function modTick()
 						setTile(cMinX,cMinY,cMinZ,0);
 						setTile(cMinX + 1,cMinY,cMinZ,MinecartBlockID);
 						cMinX = cMinX + 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY, cMinZ);
+						setPosition(getPlayerEnt(), cMinX, cMinY + 1, cMinZ);
 						CTick = 0;
 					}
 					else {Direction = 1;CTick--;}
@@ -66,7 +66,7 @@ function modTick()
 						setTile(cMinX,cMinY,cMinZ + 1,0);
 						setTile(cMinX,cMinY,cMinZ + 1,MinecartBlockID);
 						cMinZ = cMinZ + 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY, cMinZ);
+						setPosition(getPlayerEnt(), cMinX, cMinY + 1, cMinZ);
 						CTick = 0;
 					}
 					else {Direction = 2;CTick--;}
@@ -78,7 +78,7 @@ function modTick()
 						setTile(cMinX,cMinY,cMinZ,0);
 						setTile(cMinX - 1,cMinY,cMinZ,MinecartBlockID);
 						cMinX = cMinX - 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY, cMinZ);
+						setPosition(getPlayerEnt(), cMinX, cMinY + 1, cMinZ);
 						CTick = 0;
 					}
 					else {Direction = 3;CTick--;}
@@ -90,7 +90,7 @@ function modTick()
 						setTile(cMinX,cMinY,cMinZ - 1,0);
 						setTile(cMinX,cMinY,cMinZ - 1,MinecartBlockID);
 						cMinZ = cMinZ - 1;
-						setPosition(getPlayerEnt(), cMinX, cMinY, cMinZ);
+						setPosition(getPlayerEnt(), cMinX, cMinY + 1, cMinZ);
 						CTick = 0;
 					}
 					else {Direction = 0;CTick--;}
