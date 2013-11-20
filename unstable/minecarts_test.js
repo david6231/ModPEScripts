@@ -78,7 +78,7 @@ function checkToMove(xx,yy,zz)
 
 function modTick()
 {
-	if(!init2)
+	if(init2 == false)
 	{
 		Player.addItemInventory(MinecartBlockID, 64, 0);
 		Player.addItemInventory(RailBlockID, 255,0);
