@@ -2,6 +2,7 @@
 // version 0.0.2
 
 var init = false;
+var init2 = false;
 
 var MinecartBlockID = 200;
 var MinecartItemID = 421;
@@ -77,6 +78,13 @@ function checkToMove(xx,yy,zz)
 
 function modTick()
 {
+	if(!init2)
+	{
+		addItemInventory(MinecartBlockID, 64, 0);
+		addItemInventory(RailBlockID, 255,0);
+		init2 = true;
+	}
+
 	if(riding == 1)
 	{
 		CTick++;
@@ -203,3 +211,4 @@ function modTick()
 		}
 	}
 }
+	try { buttonWindow.show
