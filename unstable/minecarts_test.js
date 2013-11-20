@@ -80,8 +80,8 @@ function modTick()
 {
 	if(!init2)
 	{
-		addItemInventory(MinecartBlockID, 64, 0);
-		addItemInventory(RailBlockID, 255,0);
+		Player.addItemInventory(MinecartBlockID, 64, 0);
+		Player.addItemInventory(RailBlockID, 255,0);
 		init2 = true;
 	}
 
@@ -211,4 +211,3 @@ function modTick()
 		}
 	}
 }
-	try { buttonWindow.show
