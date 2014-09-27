@@ -1,0 +1,13 @@
+Initiatecarmod
+
+AddItemToInventory (ID: 64)
+Track:Cobblestone (ID: 4)
+Design: Hotrod/Challengermodel2010)
+
+InitiateTankModel
+
+Country: USA
+30 mm Cannon, 10mm MG
+
+InitiateModCommand
+/cars
